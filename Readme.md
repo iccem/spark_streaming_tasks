@@ -50,26 +50,31 @@ Data Format:
 seg_firefox 4176
 ...
 
-Условие
-Сегмент - это множество пользователей, определяющееся неким признаком. Когда пользователь посещает web-сервис со своего устройства, это событие логируется на стороне web-сервиса в следующем формате: user_id <tab> user_agent. Например:
+Condition:
 
-f78366c2cbed009e1febc060b832dbe4	Mozilla/5.0 (Linux; Android 4.4.2; T1-701u Build/HuaweiMediaPad) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.73 Safari/537.36
-62af689829bd5def3d4ca35b10127bc5	Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/61.0.3163.100 Safari/537.36
+Segments are defined based on user features logged in web service data. Each line in the input represents a user_id followed by user_agent information.
 
+Segments:
 
-На вход поступают порции web-логов в описанном формате. Требуется разбить аудиторию (пользователей) в этих логах на следующие сегменты:
+Users browsing from iPhones.
+Users using the Firefox browser.
+Users using Windows.
+Segments may overlap, and users can belong to multiple segments.
 
-Пользователи, которые работают в интернете из-под IPhone.
-Пользователи, кот. используют Firefox браузер.
-Пользователи, кот. используют Windows.
+Heuristics:
 
-Не стоит волноваться если какие-то пользователи не попадут ни в 1 из указанных сегментов поскольку в реальной жизни часто попадаются данные, которые сложно классифицировать. Таких пользователей просто не включаем в выборку.
-Также сегменты могут пересекаться (ведь возможен вариант, что пользователь использует Windows, на котором стоит Firefox). Для того, чтоб выделить сегменты можно использовать следующие эвристики (или придумать свои):
+Segment	Heuristic
+seg_iphone	parsed_ua['device']['family'] like '%iPhone%'
+seg_firefox	parsed_ua['user_agent']['family'] like '%Firefox%'
+seg_windows	parsed_ua['os']['family'] like '%Windows%'
+Estimate the number of unique users in each segment using the HyperLogLog algorithm (with an error rate of 1%). Output segments and user counts in the format: segment_name <tab> count, sorted by user count in descending order.
 
+Do not worry if some users do not fall into any of the specified segments, as real-life data often includes instances that are challenging to classify. Such users are simply excluded from the sample.
 
+Additionally, segments may overlap (since it is possible that a user is using Windows with Firefox installed). To identify segments, the following heuristics can be employed (or alternative ones can be devised):
 
-Сегмент
-Эвристика
+Segment
+Heuristic
 
 
 
@@ -87,7 +92,6 @@ parsed_ua['os']['family'] like '%Windows%'
 
 
 
-Оцените кол-во уникальных пользователей в каждом сегменте используя алгоритм 
-HyperLogLog (error_rate равным 1%).
+Estimate the number of unique users in each segment using the HyperLogLog algorithm (with an error rate of 1%).
 
-В результате выведите сегменты и количества пользователей в следующем формате: segment_name <tab> count. Отсортируйте результат по количеству пользователей в порядке убывания.
+As a result, output the segments and the respective user counts in the following format: segment_name <tab> count. Sort the results based on the number of users in descending order.
