@@ -69,28 +69,20 @@ seg_firefox	parsed_ua['user_agent']['family'] like '%Firefox%'
 seg_windows	parsed_ua['os']['family'] like '%Windows%'
 Estimate the number of unique users in each segment using the HyperLogLog algorithm (with an error rate of 1%). Output segments and user counts in the format: segment_name <tab> count, sorted by user count in descending order.
 
-Do not worry if some users do not fall into any of the specified segments, as real-life data often includes instances that are challenging to classify. Such users are simply excluded from the sample.
+Some users can not fall into any of the specified segments, as real-life data often includes instances that are challenging to classify. Such users are simply excluded from the sample.
 
 Additionally, segments may overlap (since it is possible that a user is using Windows with Firefox installed). To identify segments, the following heuristics can be employed (or alternative ones can be devised):
-
-Segment
-Heuristic
-
-
-
+- Segment
+- Heuristic
 
 seg_iphone
 parsed_ua['device']['family'] like '%iPhone%'
 
-
 seg_firefox
 parsed_ua['user_agent']['family'] like '%Firefox%'
 
-
 seg_windows
 parsed_ua['os']['family'] like '%Windows%'
-
-
 
 Estimate the number of unique users in each segment using the HyperLogLog algorithm (with an error rate of 1%).
 
