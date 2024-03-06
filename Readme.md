@@ -2,7 +2,7 @@ Spark Streaming
 
 Task 1
 
-The script extracts collocations from a corpus of texts (Wikipedia articles). A collocation is a pair of words that occur together more often than expected by chance, such as "references_external" or "Roman Empire."
+The script extracts collocations from a corpus of texts (Wikipedia articles). A collocation is a pair of words that occur together more often than expected by chance, e.g. "references_external" or "Roman Empire."
 
 The script utilizes the NPMI (Normalized Pointwise Mutual Information) metric for collocation extraction.
 
@@ -11,21 +11,20 @@ Workflow:
 The PMI (Pointwise Mutual Information) of two words, a and b, is defined as:
 
 PMI(a,b) = ln(P(a,b) / P(a)∗P(b)),
-Where P(a,b) is the probability of the two words occurring together, and  P(a) and P(b) are the probabilities of words a and b, respectively.
+where P(a,b) is the probability of the two words occurring together, and  P(a) and P(b) are the probabilities of words a and b, respectively.
 Higher PMI values indicate rarer collocations.
 
 P(a) = num_of_occurrences_of_word_"a" / num_of_occurrences_of_all_words
 
 P(ab) = num_of_occurrences_of_pair_"ab" / num_of_occurrences_of_all_pairs
 
-total_number_of_words - общее кол-во слов в тексте
-total_number_of_word_pairs - общее кол-во пар
 
-Расчет NPMI:
+NPMI calculation:
 
 NPMI(a,b) = −(PMI(a,b) / lnP(a,b))
 
 Normalization of NPMI to the range [-1, 1].
+
 
 Data Processing:
 
