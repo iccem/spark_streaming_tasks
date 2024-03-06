@@ -40,8 +40,6 @@ The top 39 most popular collocations, sorted by descending NPMI values, are disp
 
 ## **Task 2**
 
-**Spark Streaming**
-
 Input Data: /data/realtime/uids
 
 Data Format:
@@ -49,7 +47,7 @@ Data Format:
 seg_firefox 4176
 ...
 
-Condition:
+**Condition:**
 
 Segments are defined based on user features logged in web service data. Each line in the input represents a user_id followed by user_agent information.
 
