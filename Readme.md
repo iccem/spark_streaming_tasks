@@ -1,12 +1,12 @@
-Spark Streaming
+#Spark Streaming (pet-project)
 
-Task 1
+##**Task 1**
 
 The script extracts collocations from a corpus of texts (Wikipedia articles). A collocation is a pair of words that occur together more often than expected by chance, e.g. "references_external" or "Roman Empire."
 
 The script utilizes the NPMI (Normalized Pointwise Mutual Information) metric for collocation extraction.
 
-Workflow:
+**Workflow:**
 
 The PMI (Pointwise Mutual Information) of two words, a and b, is defined as:
 
@@ -19,14 +19,14 @@ P(a) = num_of_occurrences_of_word_"a" / num_of_occurrences_of_all_words
 P(ab) = num_of_occurrences_of_pair_"ab" / num_of_occurrences_of_all_pairs
 
 
-NPMI calculation:
+**NPMI calculation:**
 
 NPMI(a,b) = −(PMI(a,b) / lnP(a,b))
 
 Normalization of NPMI to the range [-1, 1].
 
 
-Data Processing:
+**Data Processing:**
 
 All non-Latin characters are discarded during parsing.
 All words are converted to lowercase.
@@ -38,9 +38,9 @@ The top 39 most popular collocations, sorted by descending NPMI values, are disp
 
 
 
-Task 2
+##**Task 2**
 
-Spark Streaming
+**Spark Streaming**
 
 Input Data: /data/realtime/uids
 
@@ -53,12 +53,14 @@ Condition:
 
 Segments are defined based on user features logged in web service data. Each line in the input represents a user_id followed by user_agent information.
 
+
 Segments:
 
 Users browsing from iPhones.
 Users using the Firefox browser.
 Users using Windows.
 Segments may overlap, and users can belong to multiple segments.
+
 
 Heuristics:
 
