@@ -1,6 +1,6 @@
-#Spark Streaming (pet-project)
+# Spark Streaming (pet-project)
 
-##**Task 1**
+## **Task 1**
 
 The script extracts collocations from a corpus of texts (Wikipedia articles). A collocation is a pair of words that occur together more often than expected by chance, e.g. "references_external" or "Roman Empire."
 
@@ -38,7 +38,7 @@ The top 39 most popular collocations, sorted by descending NPMI values, are disp
 
 
 
-##**Task 2**
+## **Task 2**
 
 **Spark Streaming**
 
